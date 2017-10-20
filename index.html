@@ -1,0 +1,127 @@
+<!DOCTYPE>
+<html ng-app>
+<head>
+<!--latest compiled and minified css -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!--Optional Theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+
+	<title>CVSender</title>
+</head>
+<body>
+<!-- navbar -->
+ <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+
+
+           
+            <li role="presentation"><a href="#about ">About</a></li>
+            <li role="presentation"><a href="#about">Contact</a></li>
+          </ul>
+        </nav>
+      
+      </div>
+
+      <!-- jumbotron -->
+       <div class="jumbotron" id="about">
+        <h1>CV SENDER</h1> 
+        <p class="lead" style="font-family: verdana;">CONTENT ON THIS FIELD INCLUDE INFORMATION ABOUT THE JOB AND APPLICATION PROCESS AND ALSO CONTACT INFO.</p>
+        <p><a class="btn btn-lg btn-success" href="#divsub" role="button">Submit CV</a></p>
+      </div>
+
+<div class="container" ng-controller="AppCtrl" id="divsub">
+	
+<table class="table">
+<thead>
+	<tr>
+		<th>Name</th>
+    <th>Email Address</th>
+        <th>Years Of Experience</th>
+        <th>Education Level</th>
+        <th>Attachment</th>
+        <th>Action</th>
+	</tr>
+</thead>
+<tbody>
+<tr>
+	<td>
+	<input class="form-control"  ng-model="cv.name">	
+    </td>
+    <td>
+      <input class="form-control" ng-model="cv.email">
+
+    </td>
+    <td>
+	<input class="form-control"  ng-model="cv.experience">	
+    </td>
+
+    <td>
+    
+     <!-- add dropdown here to show a list of categories of different items -->
+    <!--   <select>Select Level
+        <option value="cars">PHD</option>
+        <option value="beauty">DEGREE</option>
+        <option value="electronics">DIPLOMA</option>
+        <option value="Furniture">CERTIFICATE</option>
+
+
+      </select>  -->
+ <input class="form-control" ng-model="cv.edulevel">
+    	
+    </td>
+     <td>
+        <input type="file" id="myFile" ng-model="cv.attachment">
+
+<button  class="btn btn-primary" onclick="myFunction()">Upload</button>
+
+<script>
+function myFunction() {
+    var x = document.getElementById("myFile");
+    x.disabled = true; //MAYBE TRY FALSE AS AN OPTION.  
+}
+</script>
+
+
+    </td> 
+    <td>
+    	<button class="btn btn-primary" ng-click="addcv()">Submit CV</button>
+    </td>
+    <td>
+    <button class="btn btn-danger" ng-click="resetcv()">Reset</button>
+    </td>
+ 
+</tr>
+
+ <tr ng-repeat="cv in cvlist">
+ <td>{{cv.name}}</td>
+ <td>{{cv.email}}</td>
+ <td>{{cv.experience}}</td>
+ <td>{{cv.edulevel}}</td>
+ <td>{{cv.attachment}}</td>
+
+    <td>
+      <!-- this button will download the attached cv of accepted candidates and send review messages to applicant  -->
+      <button class="btn btn-primary" ng-click="acceptcv()">Accept</button>
+
+  </td>
+  <td>
+    <!-- this button rejects candidate , deletes records and sends respond messages to denied applicants -->
+    <button class="btn btn-danger" ng-click="resetcv()">Reject</button>
+  </td>
+ 	
+
+ </tr>	
+
+</tbody>
+</table>
+
+
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28/angular.min.js"></script>
+<script src="controllers/controller.js"></script>
+</body>
+</html> 
